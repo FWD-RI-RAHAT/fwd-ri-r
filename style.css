@@ -274,7 +274,7 @@ section.active {
     gap: 20px;
 }
 
-.home_content .sci_btn a {
+.home_content .sci_btn > a {
     padding: 12px 28px;
     border: 2px solid var(--mainColor);
     border-radius: 50px;
@@ -446,6 +446,7 @@ section.services .services_container {
     min-width: 300px;
     max-width: 400px;
     width: 100%;
+    height: 31rem;
 }
 
 .services_container .service_box:hover {
