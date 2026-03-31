@@ -179,7 +179,7 @@ nav a.active {
     .nav #ul_nav_bar {
         position: absolute;
         top: 100%;
-        left: 0;
+        right: 0;
         display: block;
         width: 250px;
         height: 100vh;
@@ -692,7 +692,7 @@ section.resume {
 
 .resume_detail.about_me .resume_list .resume_items {
     height: auto;
-    padding: 0 0 5rem;
+    padding: 0 0 1rem;
     background: transparent;
     align-items: start;
 }
@@ -985,13 +985,6 @@ section.contact .contact_container {
 .contact_box .field_box textarea:focus {
     border-color: var(--mainColor);
 }
-
-
-
-
-
-
-
 
 
 
