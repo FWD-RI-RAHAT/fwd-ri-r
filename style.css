@@ -208,7 +208,7 @@ nav a.active {
 section {
     width: 100%;
     min-height: 100vh;
-    padding: 5rem 9%;
+    padding: 5rem max(50px, 5%);
     display: flex;
     align-items: center;
     background: var(--bgColor);
@@ -235,13 +235,17 @@ section.active {
     }
 }
 
+section.home {
+    align-content: flex-start;
+}
+
 .home {
     justify-content: space-between;
     padding-top: 12rem;
 }
 
 .home h1 {
-    font-size: 27px;
+    /* font-size: 27px; */
     font-weight: 600;
 }
 
@@ -264,6 +268,26 @@ section.active {
 .home_content {
     width: 62%;
     margin-right: 20px;
+    position: relative;
+    
+    animation: moove_right 1s linear forwards;
+    animation-delay: 1s;
+    /* animation-name: moov_right;
+    animation-duration: 1.6s;
+    animation-fill-mode: linear;
+    animation-timing-function: forwards; */
+}
+@keyframes moove_right {
+    0% {
+        left: -5rem;
+        opacity: 0;
+        /* transform: scale(.8); */
+    }
+    100% {
+        left: 0;
+        opacity: 1;
+        /* transform: scale(1); */
+    }
 }
 
 .home_content .sci_btn {
@@ -292,10 +316,12 @@ section.active {
 
 .sci_btn .sci {
     display: flex;
-    column-gap: 20px;
+    gap: 20px;
 }
 
-.sci i {
+.sci a {
+    display: inline-block;
+    position: relative;
     border: 1.5px solid var(--mainColor);
     width: 40px;
     height: 40px;
@@ -307,7 +333,34 @@ section.active {
     transition: .4s ease;
 }
 
-.sci i:hover {
+.sci a::before {
+    content: '';
+    position: absolute;
+    top: -1.6rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 9rem;
+    height: 2.5rem;
+    border-radius: 2rem;
+    background: var(--textColor);
+    display: none;
+}
+
+.sci a:nth-child(1)::before {
+    content: "Facebook";
+}
+.sci a:nth-child(2)::before {
+    content: "Twitter";
+}
+.sci a:nth-child(3)::before {
+    content: "GitHub";
+}
+
+.sci a:hover::before {
+    display: block;
+}
+
+.sci a:hover {
     cursor: pointer;
     box-shadow: 0 0 10px var(--mainColor);
     color: var(--textColor);
@@ -365,6 +418,22 @@ section.active {
     justify-content: center;
     align-items: center;
     overflow: hidden;
+
+    animation-name: moove_left;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+    animation-delay: 1s;
+}
+@keyframes moove_left {
+    0% {
+        transform: translateX(5rem);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0rem);
+        opacity: 1;
+    }
 }
 
 .home .image_bx .image {
@@ -432,21 +501,23 @@ section.services {
 section.services .services_container {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; 
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 2rem;
 }
 
 .services_container .service_box {
-    padding: 3rem 2.5rem;
-    background: var(--secondBgColor);
-    border: .2rem solid var(--secondBgColor);
-    border-radius: 1rem;
-    transition: .5s;
-    min-width: 300px;
-    max-width: 400px;
-    width: 100%;
-    height: 31rem;
+	padding: 3rem 2.5rem;
+	background: var(--secondBgColor);
+	border: .2rem solid var(--secondBgColor);
+	border-radius: 1rem;
+	transition: .5s;
+	width: 100%;
+	max-width: 400px;
+	min-height: 250px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }
 
 .services_container .service_box:hover {
@@ -496,7 +567,7 @@ section.services .services_container {
 
 .service_box h3 {
     font-size: 3rem;
-    margin: .5rem 0 2rem;
+    margin: 1rem 0 2rem;
     transition: .5s;
 }
 
@@ -531,6 +602,7 @@ section.resume {
 
 .resume_box .desc {
     padding: 2rem 0 2.5rem;
+    text-align: justify;
 }
 
 .resume_box .resume_btn {
@@ -579,6 +651,7 @@ section.resume {
     background-color: var(--secondBgColor);
     border-radius: .8rem;
     padding: 3rem 2rem;
+    min-width: 250px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -614,12 +687,13 @@ section.resume {
 
 .resume_items .conpany {
     position: relative;
-    margin-left: 2rem;
-    margin-bottom: 2rem;
+    margin-left: 0;
+    margin-bottom: .5rem;
     font-size: 2rem;
+    font-weight: 500;
 }
 
-.resume_items .conpany::before {
+/* .resume_items .conpany::before {
     content: '';
     position: absolute;
     top: 50%;
@@ -628,7 +702,7 @@ section.resume {
     padding: .7rem;
     border-radius: 50%;
     margin-left: -2rem;
-}
+} */
 
 @media (max-width: 580px) {
     .resume_conteiner {
@@ -641,8 +715,9 @@ section.resume {
 }
 
 .resume_detail.skills .resume_list {
-    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
     height: auto;
+    grid-gap: 2rem;
     overflow: visible;
 }
 
@@ -749,6 +824,7 @@ section.portfolio {
 .portfolio_box p {
     font-size: 1.6rem;
     color: var(--textColor);
+    text-align: justify;
 }
 
 .portfolio_box .tech {
@@ -905,11 +981,22 @@ section.contact .contact_container {
     max-width: 500px;
     min-width: 250px;
     width: 100%;
+    animation: cnct_content both;
+    animation-timeline: view(60% 5%);
+}
+@keyframes cnct_content {
+    0% {
+        opacity: 0;
+        transform: translateY(-5rem) scale(.5);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0rem);
+    }
 }
 
 .contact_box h2 {
     font-size: 4.5rem;
-    min-width: 250px;
 }
 
 .contact_box p {
@@ -987,22 +1074,52 @@ section.contact .contact_container {
     border-color: var(--mainColor);
 }
 
-
-
-
 @media (max-width: 400px) {
+    section.contact {
+        width: 100%;
+    }
+    
     section.contact .contact_container form {
         padding: 2rem 1rem;
+    }
+
+    .heading {
+        font-size: 3rem;
+    }
+
+    .resume_items h3 {
+        font-size: 1.8rem;
+    }
+    .service_box h3 {
+        font-size: 2rem;
+    }
+
+}
+
+
+@media screen and (max-width: 550px) {
+    .contact_box h2 {
+        font-size: 2.5rem;
+    }
+    .portfolio_box h3 {
+        font-size: 2.5rem;
     }
 }
 
 @media (max-width: 768px) {
+    body {
+        overflow-x: hidden;
+    }
+
     .home_content .sci_btn {
         flex-direction: column;
     }
 
     .home_content {
         margin-top: 3rem;
+        width: 100%;
+        padding: 0 9%;
+        margin-right: 0;
     }
 
     .home_content .heading span {
@@ -1021,6 +1138,10 @@ section.contact .contact_container {
     .home .image_bx {
         width: 250px;
         height: 250px;
+    }
+
+    section.resume {
+        padding: 9%;
     }
 
     .portfolio_container {
@@ -1045,4 +1166,3 @@ section.contact .contact_container {
         grid-template-columns: 1fr;
     }
 }
-
