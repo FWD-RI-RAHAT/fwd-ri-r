@@ -98,3 +98,19 @@ arrowLeft.addEventListener('click', () => {
 
     activePortfolio();
 });
+
+// ====== email contact box =========
+let sendMsg = document.querySelector('.btn');
+let name_ = getElementById('name');
+let email =  getElementById('email');
+let phoneNumber = getElementById("phone_number");
+let subject = getElementById('subject');
+let message = getElementById('message');
+
+sendMsg.addEventListener("submit", () => {
+    name_.value = "";
+    email.value = "";
+    phoneNumber.value = "";
+    subject.value = "";
+    message.value = "";
+});
